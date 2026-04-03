@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.mvc.View?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+
+<View fx:id="superAdminView" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kardexmobil.views.SuperAdminPresenter">
+   <center>
+      <ScrollPane fitToWidth="true" style="-fx-background-color: #F8FAFC;">
+         <content>
+            <VBox spacing="20.0" style="-fx-padding: 15;">
+               <children>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Dashboard Corporativo" />
+                        <Label style="-fx-text-fill: #64748B;" text="Resumen de inventario y personal" />
+                     </children>
+                  </VBox>
+
+                  <FlowPane hgap="10.0" vgap="10.0">
+                     <children>
+                        <VBox prefWidth="160.0" spacing="5.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15;">
+                           <effect><DropShadow color="#0000000D" radius="10.0" /></effect>
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 10px;" text="USUARIOS" textFill="#64748B" />
+                              <Label fx:id="lblTotalUsuarios" text="0" textFill="#E11D2A" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                           </children>
+                        </VBox>
+
+                        <VBox prefWidth="160.0" spacing="5.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15;">
+                           <effect><DropShadow color="#0000000D" radius="10.0" /></effect>
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 10px;" text="MOVIMIENTOS" textFill="#64748B" />
+                              <Label fx:id="lblTotalventas" text="0" textFill="#E11D2A" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </FlowPane>
+
+                  <VBox spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15;">
+                     <effect><DropShadow color="#0000000D" radius="10.0" /></effect>
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Flujo de Insumos (Día)" />
+                        <BarChart fx:id="chartVentas" legendVisible="false" prefHeight="250.0">
+                           <xAxis><CategoryAxis side="BOTTOM" /></xAxis>
+                           <yAxis><NumberAxis side="LEFT" /></yAxis>
+                        </BarChart>
+                     </children>
+                  </VBox>
+
+                  <VBox spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15;">
+                     <effect><DropShadow color="#0000000D" radius="10.0" /></effect>
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Distribución de Roles" />
+                        <PieChart fx:id="chartRoles" prefHeight="250.0" />
+                     </children>
+                  </VBox>
+
+                  <HBox alignment="CENTER" style="-fx-padding: 10;">
+                     <children>
+                        <Label fx:id="lblSucursalTop" text="Sede Central" textFill="#64748B" style="-fx-font-size: 12px; -fx-font-style: italic;" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</View>

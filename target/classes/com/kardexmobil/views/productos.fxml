@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.mvc.View?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<View fx:id="productosView" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kardexmobil.views.ProductosPresenter">
+   <center>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Catálogo">
+               <content>
+                  <VBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: #F8FAFC;">
+                     <children>
+                        <TextField fx:id="txtBuscar" promptText="🔍 Buscar insumo o herramienta..." style="-fx-background-radius: 20; -fx-padding: 10;" />
+                        
+                        <TableView fx:id="tblProductos" VBox.vgrow="ALWAYS">
+   <columns>
+      <TableColumn fx:id="colNombre" prefWidth="120" text="Producto" />
+      <TableColumn fx:id="colTipo" prefWidth="100" text="Tipo" /> <TableColumn fx:id="colStock" prefWidth="60" text="Stock" />
+      <TableColumn fx:id="colUnidadMedida" prefWidth="80" text="U.M." /> <TableColumn fx:id="colVencimiento" prefWidth="90" text="Vence" />
+   </columns>
+   <columnResizePolicy>
+      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+   </columnResizePolicy>
+</TableView>
+                        
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #94A3B8;" text="Toca un producto para editarlo" />
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+
+            <Tab fx:id="tabFormulario" text="Registro">
+               <content>
+                  <ScrollPane fitToWidth="true" style="-fx-background-color: white;">
+                     <content>
+                        <VBox spacing="15.0" style="-fx-padding: 20;">
+                           <children>
+                              <Label text="DATOS DEL PRODUCTO" style="-fx-font-weight: bold; -fx-text-fill: #E11D2A;" />
+                              
+                              <VBox spacing="5.0">
+                                 <Label text="Nombre" style="-fx-font-size: 12px; -fx-text-fill: #64748B;" />
+                                 <TextField fx:id="txtNombre" prefHeight="40.0" />
+                              </VBox>
+
+                              <HBox spacing="10.0">
+                                 <VBox HBox.hgrow="ALWAYS" spacing="5.0">
+                                    <Label text="Lote" style="-fx-font-size: 12px;" />
+                                    <TextField fx:id="txtLote" prefHeight="40.0" />
+                                 </VBox>
+                                 <VBox HBox.hgrow="ALWAYS" spacing="5.0">
+                                    <Label text="Stock Inicial" style="-fx-font-size: 12px;" />
+                                    <TextField fx:id="txtStock" prefHeight="40.0" />
+                                 </VBox>
+                              </HBox>
+
+                              <VBox spacing="5.0">
+                                 <Label text="Tipo de Producto" />
+                                 <ComboBox fx:id="cmbTipo" maxWidth="Infinity" prefHeight="40.0" />
+                              </VBox>
+
+                              <VBox spacing="5.0">
+                                 <Label text="Unidad de Medida" />
+                                 <ComboBox fx:id="cmbUndM" maxWidth="Infinity" prefHeight="40.0" />
+                              </VBox>
+
+                              <VBox spacing="5.0">
+                                 <Label text="Fecha Vencimiento" />
+                                 <DatePicker fx:id="dpVencimiento" maxWidth="Infinity" prefHeight="40.0" />
+                              </VBox>
+                              <VBox spacing="5.0">
+                                  <Label text="Estado del Producto" style="-fx-font-size: 12px;" />
+                                  <ComboBox fx:id="cmbEstado" maxWidth="Infinity" prefHeight="40.0" />
+                              </VBox>
+                              <Button fx:id="btnGuardar" maxWidth="Infinity" onAction="#guardar" prefHeight="50.0" 
+                                      style="-fx-background-color: #E11D2A; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10;" 
+                                      text="GUARDAR" />
+                              
+                              <Button onAction="#limpiar" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #64748B;" text="Limpiar Formulario" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</View>

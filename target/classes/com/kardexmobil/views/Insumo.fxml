@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.mvc.View?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<View fx:id="insumoView" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kardexmobil.views.InsumoPresenter">
+   <center>
+      <ScrollPane fitToWidth="true" style="-fx-background-color: white;">
+         <content>
+            <VBox spacing="15.0" style="-fx-padding: 15;">
+               <children>
+                  
+                  <VBox spacing="10.0" style="-fx-background-color: #F8FAFC; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10;">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #E11D2A;" text="DATOS DEL EPP / UNIFORME" />
+                        
+                        <TextField fx:id="txtNombre" promptText="Nombre (Ej. Chaleco Reflectivo)" />
+                        
+                        <HBox spacing="10.0">
+                           <children>
+                              <ComboBox fx:id="cbUnidad" maxWidth="Infinity" promptText="U.M." HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="txtStock" prefWidth="120.0" promptText="Stock Inicial" />
+                           </children>
+                        </HBox>
+                        
+                        <VBox fx:id="contenedorLote" spacing="10.0">
+                           <children>
+                              <TextField fx:id="txtCodigoLote" promptText="Código de Lote" />
+                              <DatePicker fx:id="dpVencimiento" maxWidth="Infinity" promptText="Fecha de Vencimiento" />
+                           </children>
+                        </VBox>
+                        
+                        <Button fx:id="btnGuardar" maxWidth="Infinity" onAction="#guardarInsumo" style="-fx-background-color: #E11D2A; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10;" text="💾 GUARDAR / ACTUALIZAR" />
+                        
+                        <HBox spacing="8.0">
+                           <children>
+                              <Button maxWidth="Infinity" onAction="#limpiar" style="-fx-background-color: #475569; -fx-text-fill: white;" text="LIMPIAR" HBox.hgrow="ALWAYS" />
+                              <Button maxWidth="Infinity" onAction="#eliminarInsumo" style="-fx-background-color: white; -fx-text-fill: #B91C1C; -fx-border-color: #B91C1C;" text="ELIMINAR" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+                  <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #1E293B;" text="MAESTRO DE EPPS" />
+                        <TextField fx:id="txtBuscar" promptText="🔍 Buscar por nombre..." />
+                        
+                        <TableView fx:id="tblInsumos" minHeight="300.0" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn fx:id="colNombre" text="Descripción" />
+                            <TableColumn fx:id="colStock" prefWidth="70.0" text="Stock" />
+                            <TableColumn fx:id="colVencimiento" prefWidth="100.0" text="Vence" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</View>

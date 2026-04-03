@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.mvc.View?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<View fx:id="sucursalView" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kardexmobil.views.SucursalPresenter">
+   <center>
+      <TabPane fx:id="tabPanePrincipal" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Catálogo">
+               <content>
+                  <VBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: #F8FAFC;">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #1E293B;" text="📋 SUCURSALES ACTIVAS" />
+                        <TableView fx:id="tblSucursales" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="colNombre" prefWidth="150.0" text="Nombre Sede" />
+                              <TableColumn fx:id="colDireccion" prefWidth="200.0" text="Ubicación" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <Label style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;" text="Toca una sucursal para editar sus datos." />
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+
+            <Tab fx:id="tabFormulario" text="Registro">
+               <content>
+                  <ScrollPane fitToWidth="true" style="-fx-background-color: white;">
+                     <content>
+                        <VBox spacing="20.0" style="-fx-padding: 25;">
+                           <children>
+                              <Label text="● DATOS DE LA SEDE" style="-fx-font-weight: bold; -fx-text-fill: #E11D2A;" />
+                              
+                              <VBox spacing="8.0">
+                                 <children>
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #64748B;" text="NOMBRE COMERCIAL" />
+                                    <TextField fx:id="txtNombre" prefHeight="45.0" promptText="Ej: Centro de Distribución..." />
+                                 </children>
+                              </VBox>
+
+                              <VBox spacing="8.0">
+                                 <children>
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #64748B;" text="DIRECCIÓN FÍSICA" />
+                                    <TextField fx:id="txtDireccion" prefHeight="45.0" promptText="Av. Principal #123..." />
+                                 </children>
+                              </VBox>
+
+                              <VBox spacing="12.0">
+                                 <children>
+                                    <Button fx:id="btnGuardar" maxWidth="Infinity" onAction="#guardar" prefHeight="50.0" 
+                                            style="-fx-background-color: #E11D2A; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10;" 
+                                            text="GUARDAR SUCURSAL" />
+                                    
+                                    <Button fx:id="btnEliminar" maxWidth="Infinity" onAction="#eliminar" prefHeight="40.0" 
+                                            style="-fx-background-color: transparent; -fx-text-fill: #B91C1C; -fx-border-color: #B91C1C; -fx-border-radius: 10; -fx-font-weight: bold;" 
+                                            text="🗑 DAR DE BAJA" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</View>

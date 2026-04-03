@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.mvc.View?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<View fx:id="menuView" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kardexmobil.views.MenuPresenter">
+   <center>
+      <VBox spacing="20.0" style="-fx-background-color: #F8FAFC;">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="Dashboard" textFill="#E11D2A">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label text="Resumen operativo de tu sede" textFill="#64748B" />
+               </children>
+            </VBox>
+
+            <VBox spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #F59E0B; -fx-border-width: 0 0 0 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+                     <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                           <Label text="Stock Crítico (≤ 10)" textFill="#64748B" style="-fx-font-weight: bold;" />
+                           <Label text="Insumos por agotarse" textFill="#94A3B8" style="-fx-font-size: 11px;" />
+                        </VBox>
+                        <Label fx:id="lblAlertasStock" text="0" textFill="#F59E0B">
+                           <font><Font name="System Bold" size="30.0" /></font>
+                        </Label>
+                     </children>
+                  </HBox>
+
+                  <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #8B5CF6; -fx-border-width: 0 0 0 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+                     <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                           <Label text="Vencimientos" textFill="#64748B" style="-fx-font-weight: bold;" />
+                           <Label text="Revisión de lotes" textFill="#94A3B8" style="-fx-font-size: 11px;" />
+                        </VBox>
+                        <Label fx:id="lblVencimientos" text="0" textFill="#8B5CF6">
+                           <font><Font name="System Bold" size="30.0" /></font>
+                        </Label>
+                     </children>
+                  </HBox>
+
+                  <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #E11D2A; -fx-border-width: 0 0 0 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+                     <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                           <Label text="Stock Agotado (0)" textFill="#64748B" style="-fx-font-weight: bold;" />
+                           <Label text="Compra urgente" textFill="#94A3B8" style="-fx-font-size: 11px;" />
+                        </VBox>
+                        <Label fx:id="lblAgotados" text="0" textFill="#E11D2A">
+                           <font><Font name="System Bold" size="30.0" /></font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/Imagenes/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="División Corporativa 2026" textFill="#94A3B8" style="-fx-font-size: 10px;" />
+               </children>
+            </VBox>
+
+         </children>
+      </VBox>
+   </center>
+</View>
