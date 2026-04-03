@@ -9,14 +9,14 @@
     <name>KardexMobil</name>
 
    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>21</maven.compiler.release>
-        <javafx.version>21.0.2</javafx.version>
-        <attach.version>4.0.22</attach.version>
-        <gluonfx.plugin.version>1.0.28</gluonfx.plugin.version>
-        <javafx.plugin.version>0.0.8</javafx.plugin.version>
-        <mainClassName>com.kardexmobil.KardexMobil</mainClassName>
-    </properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>21</maven.compiler.release>
+    <javafx.version>21.0.2</javafx.version>
+    <attach.version>4.0.22</attach.version>
+    <gluonfx.plugin.version>1.0.29</gluonfx.plugin.version> 
+    <javafx.plugin.version>0.0.8</javafx.plugin.version>
+    <mainClassName>com.kardexmobil.KardexMobil</mainClassName>
+</properties>
 
     <dependencies>
         <dependency>
