@@ -21,10 +21,14 @@ jobs:
 
       - name: Build con Maven
         run: |
-          export MAVEN_OPTS="-Xmx6g"
-          rm -rf target/gluonfx/aarch64-android/gvm/capcache* || true
-          mvn clean install -DskipTests
-          mvn gluonfx:build gluonfx:package -Pandroid          
+           export MAVEN_OPTS="-Xmx6g"
+           # Clean the entire gluonfx build directory to ensure fresh CAP cache generation
+           rm -rf target/gluonfx || true
+           # Remove any stale GraalVM caches
+           rm -rf ~/.cache/graalvm* || true
+           mvn clean install -DskipTests
+           # Add cache regeneration flag for GraalVM
+           mvn gluonfx:build gluonfx:package -Pandroid -Dgraalvm.skip.agent=false
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
