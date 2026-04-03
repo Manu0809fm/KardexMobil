@@ -15,28 +15,24 @@ jobs:
           java-version: '21'
           distribution: 'graalvm-community'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          native-image-musl-builder: true
+          # Quitamos musl-builder para evitar conflictos con Android
 
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Build con Maven
         run: |
-          # 1. Limpieza profunda de carpetas temporales y caché de Gluon
-          rm -rf target/gluonfx || true
-          rm -rf ~/.cache/gluonfx || true
-          mkdir -p target/gluonfx/aarch64-android/gvm/capcache
+          # Limpieza absoluta
+          mvn clean
+          rm -rf target/gluonfx
           
-          # 2. Ejecución de Maven con flags de corrección
-          # Nota: Cada línea (excepto la última) debe terminar en \ para que sea un solo comando
-          mvn clean gluonfx:build gluonfx:package -Pandroid -e \
-            -Dgluonfx.verbose=true \
+          # Build ignorando la caché que fallaba antes
+          mvn gluonfx:build gluonfx:package -Pandroid -e \
             -Dgraalvm.nativeimage.args="-H:-UseCAPCache" \
             -DskipTests
-
+            
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
           name: KardexMobil-APK
-          # Buscamos el archivo .apk en la carpeta de salida de Gluon
           path: target/gluonfx/aarch64-android/gvm/*.apk
