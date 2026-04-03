@@ -20,12 +20,10 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Build con Maven
-        run: |
-          export MAVEN_OPTS="-Xmx6g"
-          # Primero compilamos el JAR normal
-          mvn clean install -DskipTests
-          # Luego lanzamos el build nativo por separado
-          mvn gluonfx:build gluonfx:package -Pandroid
+  run: |
+    export MAVEN_OPTS="-Xmx6g -DuseCAPCache=false"
+    mvn clean install -DskipTests
+    mvn gluonfx:build gluonfx:package -Pandroid -DuseCAPCache=false
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
