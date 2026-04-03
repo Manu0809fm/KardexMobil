@@ -162,8 +162,7 @@
         <target>${gluonfx.target}</target>
         <mainClass>${mainClassName}</mainClass>
         <nativeImageArgs>
-            <arg>--no-fallback</arg>
-            <arg>-H:+RobotImageCode</arg>
+            <arg>--no-fallback</arg>            
         </nativeImageArgs>
         <attachList>
             <list>display</list>
