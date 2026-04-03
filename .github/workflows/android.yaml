@@ -21,19 +21,14 @@ jobs:
 
       - name: Build con Maven
         run: |
-          # Solo la memoria de Maven
-          export MAVEN_OPTS="-Xmx6g"
-          
-          # Limpieza total de rastros anteriores
+          # 1. Limpieza agresiva de carpetas de sistema
           rm -rf target/gluonfx || true
-          rm -rf ~/.cache/gvm || true
+          rm -rf ~/.cache/gluonfx || true
           
-          # Instalación
-          mvn clean install -DskipTests
-          
-          # Ejecución limpia: quitamos los flags manuales de graalvm.version 
-          # y dejamos que el plugin use su configuración interna.
-          mvn gluonfx:build gluonfx:package -Pandroid -e \
+          # 2. Build limpio con el flag para ignorar la caché corrupta
+          mvn clean gluonfx:build gluonfx:package -Pandroid -e \
+            -Dgluonfx.verbose=true \
+            -Dgraalvm.nativeimage.args="-H:-UseCAPCache"
             -Dgluonfx.verbose=true
 
       - name: Guardar APK
