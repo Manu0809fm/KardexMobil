@@ -8,14 +8,17 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      - name: Setup Gluon GraalVM
-        uses: gluonhq/setup-graalvm@master
+      - name: Configurar GraalVM (Método Estable)
+        uses: graalvm/setup-graalvm@v1
         with:
-          # Esta es la nomenclatura exacta que espera el servidor de Gluon
-          graalvm: '22.1.0.1'
-          jdk: 'java17'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          java-version: '17'
+          distribution: 'graalvm' # O 'graalvm-community'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Instalar Componentes de Gluon
+        run: |
+          gu install native-image
+          # Aquí podrías añadir más componentes si fueran necesarios
 
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
