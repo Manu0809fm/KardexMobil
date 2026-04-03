@@ -15,22 +15,24 @@ jobs:
           java-version: '21'
           distribution: 'graalvm-community'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          # Quitamos musl-builder para evitar conflictos con Android
 
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Build con Maven
         run: |
-          # Limpieza absoluta
+          # 1. Limpieza total (Carpeta del proyecto y carpeta global de Gluon)
           mvn clean
           rm -rf target/gluonfx
+          rm -rf ~/.gluonfx || true
           
-          # Build ignorando la caché que fallaba antes
+          # 2. Compilación forzada sin caché
+          # Nota: Usamos las barras invertidas \ para que Maven lea todo como un solo comando
           mvn gluonfx:build gluonfx:package -Pandroid -e \
-            -Dgraalvm.nativeimage.args="-H:-UseCAPCache" \
+            -Dgluonfx.verbose=true \
+            -Dgraalvm.nativeimage.args="-H:-UseCAPCache -H:-NewCAPCache" \
             -DskipTests
-            
+
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
