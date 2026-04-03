@@ -72,7 +72,7 @@
                <children>
                   <ImageView fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/Imagenes/logo.png" />
+                        <Image url="@/logo.png" />
                      </image>
                   </ImageView>
                   <Label text="División Corporativa 2026" textFill="#94A3B8" style="-fx-font-size: 10px;" />
