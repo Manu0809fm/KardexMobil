@@ -11,8 +11,8 @@ jobs:
       - name: Setup Gluon GraalVM
         uses: gluonhq/setup-graalvm@master
         with:
-          # Usamos la versión de GraalVM que Gluon mantiene actualizada para Java 17
-          graalvm: 'java17-22.1.0.1-Final' 
+          # Esta es la nomenclatura exacta que espera el servidor de Gluon
+          graalvm: '22.1.0.1'
           jdk: 'java17'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
