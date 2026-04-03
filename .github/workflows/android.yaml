@@ -6,22 +6,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout del código
-        uses: actions/checkout@v4 # Actualizado a v4
+        uses: actions/checkout@v4
 
       - name: Setup Gluon GraalVM
         uses: gluonhq/setup-graalvm@master
         with:
           graalvm: '22.1.0.1'
           jdk: 'java17'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # <--- ESTO ES LO QUE FALTABA
 
       - name: Install Android SDK
-        uses: android-actions/setup-android@v3 # Actualizado a v3
+        uses: android-actions/setup-android@v3
 
       - name: Build con Maven
         run: mvn clean gluonfx:build gluonfx:package -Pandroid
 
       - name: Guardar APK
-        uses: actions/upload-artifact@v4 # Actualizado a v4
+        uses: actions/upload-artifact@v4
         with:
           name: KardexMobil-APK
           path: target/gluonfx/aarch64-linux-android/gvm/*.apk
