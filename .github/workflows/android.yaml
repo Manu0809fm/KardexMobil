@@ -11,28 +11,30 @@ jobs:
       - name: Configurar GraalVM (Java 21)
         uses: graalvm/setup-graalvm@v1
         with:
-          java-version: '21' # Subimos a 21
+          java-version: '21'
           distribution: 'graalvm-community'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          native-image-musl-builder: true # Esto es clave para Linux/Android
+          native-image-musl-builder: true
 
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Build con Maven
         run: |
-           export MAVEN_OPTS="-Xmx6g"
-           # Clean the entire gluonfx build directory to ensure fresh CAP cache generation
-           rm -rf target/gluonfx || true
-           # Remove any stale GraalVM caches
-           rm -rf ~/.cache/graalvm* || true
-           mvn clean install -DskipTests
-           # Add cache regeneration flag for GraalVM
-           mvn gluonfx:build gluonfx:package -Pandroid -Dgraalvm.skip.agent=false
+         export MAVEN_OPTS="-Xmx6g"
+         # Clean the entire gluonfx build directory to ensure fresh CAP cache generation
+         rm -rf target/gluonfx || true
+         # Remove any stale GraalVM caches
+         rm -rf ~/.cache/graalvm* || true
+         rm -rf ~/.graalvm* || true
+         # Clear Maven cache for gluon artifacts
+         rm -rf ~/.m2/repository/com/gluonhq || true
+         mvn clean install -DskipTests
+         # Build with explicit cache regeneration flags
+         mvn gluonfx:build gluonfx:package -Pandroid -Dgraalvm.skip.agent=false -DskipCAPCache=true
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
           name: KardexMobil-APK
-          # Ajustamos la ruta para que coincida con donde Gluon deja el archivo
           path: target/gluonfx/aarch64-android/gvm/*.apk
