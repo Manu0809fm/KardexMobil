@@ -22,17 +22,16 @@ jobs:
       - name: Build con Maven
         run: |
           export MAVEN_OPTS="-Xmx6g"
-          # Limpieza profunda de cachés anteriores
+          # Borramos rastro de builds fallidos
           rm -rf target/gluonfx || true
-          rm -rf ~/.cache/gluonfx || true
           
-          # 1. Instalamos dependencias y compilamos el proyecto base
+          # Instalación limpia
           mvn clean install -DskipTests
           
-          # 2. Ejecutamos el build de Gluon para Android
-          # Nota: Quitamos los flags -Dgraalvm.skip.agent y -DskipCAPCache 
-          # ya que la versión 1.0.29 los maneja internamente mejor.
-          mvn gluonfx:build gluonfx:package -Pandroid -e
+          # Ejecución con flags de compatibilidad para la v1.0.28
+          mvn gluonfx:build gluonfx:package -Pandroid -e \
+            -Dgraalvm.skip.agent=true \
+            -Dgluonfx.verbose=true
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
