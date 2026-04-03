@@ -22,16 +22,20 @@ jobs:
       - name: Build con Maven
         run: |
           export MAVEN_OPTS="-Xmx6g"
-          # Borramos rastro de builds fallidos
-          rm -rf target/gluonfx || true
           
-          # Instalación limpia
+          # LIMPIEZA CRÍTICA: Borramos el cache de GraalVM del sistema
+          rm -rf target/gluonfx || true
+          rm -rf ~/.cache/gvm || true
+          rm -rf ~/.cache/gluonfx || true
+          
+          # Instalación limpia de dependencias
           mvn clean install -DskipTests
           
-          # Ejecución con flags de compatibilidad para la v1.0.28
+          # Build con flags de depuración y versión explícita
           mvn gluonfx:build gluonfx:package -Pandroid -e \
             -Dgraalvm.skip.agent=true \
-            -Dgluonfx.verbose=true
+            -Dgluonfx.verbose=true \
+            -Dgraalvm.version=21.0.2
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4

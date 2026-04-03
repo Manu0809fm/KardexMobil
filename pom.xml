@@ -193,10 +193,16 @@
         <mainClass>${mainClassName}</mainClass>
         <remoteCompileHost>false</remoteCompileHost>
         <nativeImageArgs>
-            <arg>--no-fallback</arg>
-            <arg>--verbose</arg>
-            <arg>--initialize-at-build-time=java.lang.System</arg>
-        </nativeImageArgs>
+    <arg>--no-fallback</arg>
+    <arg>--verbose</arg>
+    <arg>-J-Xmx6g</arg>
+    <arg>--parallelism=1</arg>
+    <arg>--initialize-at-build-time=java.lang.System</arg>
+    <arg>--initialize-at-build-time=com.sun.jna</arg>
+    <arg>--initialize-at-run-time=java.lang.ProcessImpl</arg>
+    <arg>-H:+ReportExceptionStackTraces</arg>
+    <arg>-H:+RemoveSaturatedTypeFlows</arg>
+</nativeImageArgs>
         <attachList>
             <list>display</list>
             <list>lifecycle</list>
