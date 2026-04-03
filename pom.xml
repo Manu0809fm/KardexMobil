@@ -13,7 +13,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <javafx.version>21.0.2</javafx.version>
         <attach.version>4.0.22</attach.version>
-        <gluonfx.plugin.version>1.0.27</gluonfx.plugin.version>
+        <gluonfx.plugin.version>1.0.28</gluonfx.plugin.version>
         <javafx.plugin.version>0.0.8</javafx.plugin.version>
         <mainClassName>com.kardexmobil.KardexMobil</mainClassName>
     </properties>
@@ -76,12 +76,11 @@
             <type>maven-plugin</type>
         </dependency>
         <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>10.0.0</version>
-            <type>jar</type>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>2.1.1</version>
         </dependency>
-        <dependency>
+        <dependency>    
     <groupId>com.mysql</groupId>
     <artifactId>mysql-connector-j</artifactId>
     <version>8.0.33</version>
