@@ -11,10 +11,11 @@ jobs:
       - name: Setup Gluon GraalVM
         uses: gluonhq/setup-graalvm@master
         with:
-          graalvm: '22.1.0.1'
+          # Usamos la versión de GraalVM que Gluon mantiene actualizada para Java 17
+          graalvm: 'java17-22.1.0.1-Final' 
           jdk: 'java17'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # <--- ESTO ES LO QUE FALTABA
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
