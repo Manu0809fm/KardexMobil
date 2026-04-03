@@ -180,16 +180,18 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
+<plugin>
     <groupId>com.gluonhq</groupId>
     <artifactId>gluonfx-maven-plugin</artifactId>
     <version>${gluonfx.plugin.version}</version>
     <configuration>
         <target>${gluonfx.target}</target>
         <mainClass>${mainClassName}</mainClass>
+        <remoteCompileHost>false</remoteCompileHost>
         <nativeImageArgs>
-            <arg>--no-fallback</arg>            
+            <arg>--no-fallback</arg>
+            <arg>-H:+UnlockExperimentalVMOptions</arg>
+            <arg>-H:IncludeResourceBundles=com.sun.org.apache.xml.internal.res.XSLTErrorResources</arg>
         </nativeImageArgs>
         <attachList>
             <list>display</list>
@@ -198,25 +200,23 @@
             <list>storage</list>
         </attachList>
         <reflectionList>
-    <list>com.kardexmobil.views.LoginPresenter</list>
-    <list>com.kardexmobil.views.MenuPresenter</list>
-    <list>com.kardexmobil.views.ProductosPresenter</list>
-    <list>com.kardexmobil.views.InsumoPresenter</list>
-    <list>com.kardexmobil.views.InventarioPresenter</list>
-    <list>com.kardexmobil.views.UsuarioPresenter</list>
-    <list>com.kardexmobil.views.SucursalPresenter</list>
-    <list>com.kardexmobil.views.HistorialInventarioPresenter</list>
-    <list>com.kardexmobil.views.SuperAdminPresenter</list>
-    
-    <list>com.kardexmobil.models.Usuario</list>
-    <list>com.kardexmobil.models.Producto</list>
-    <list>com.kardexmobil.models.Insumo</list>
-    <list>com.kardexmobil.models.Inventario</list>
-    <list>com.kardexmobil.models.MovimientoInventario</list>
-    
-    <list>dao.UsuarioDAO</list>
-    <list>dao.InsumoDAO</list>
-</reflectionList>
+            <list>com.kardexmobil.views.LoginPresenter</list>
+            <list>com.kardexmobil.views.MenuPresenter</list>
+            <list>com.kardexmobil.views.ProductosPresenter</list>
+            <list>com.kardexmobil.views.InsumoPresenter</list>
+            <list>com.kardexmobil.views.InventarioPresenter</list>
+            <list>com.kardexmobil.views.UsuarioPresenter</list>
+            <list>com.kardexmobil.views.SucursalPresenter</list>
+            <list>com.kardexmobil.views.HistorialInventarioPresenter</list>
+            <list>com.kardexmobil.views.SuperAdminPresenter</list>
+            <list>com.kardexmobil.models.Usuario</list>
+            <list>com.kardexmobil.models.Producto</list>
+            <list>com.kardexmobil.models.Insumo</list>
+            <list>com.kardexmobil.models.Inventario</list>
+            <list>com.kardexmobil.models.MovimientoInventario</list>
+            <list>dao.UsuarioDAO</list>
+            <list>dao.InsumoDAO</list>
+        </reflectionList>
     </configuration>
 </plugin>
         </plugins>

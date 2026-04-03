@@ -8,28 +8,26 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      - name: Configurar GraalVM (Método Estable)
+      - name: Configurar GraalVM (Comunidad)
         uses: graalvm/setup-graalvm@v1
         with:
           java-version: '17'
-          distribution: 'graalvm' # O 'graalvm-community'
+          distribution: 'graalvm-community'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Instalar Componentes de Gluon
-        run: |
-          gu install native-image
-          # Aquí podrías añadir más componentes si fueran necesarios
 
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Build con Maven
         run: |
-          export MAVEN_OPTS="-Xmx4g"
-          mvn clean gluonfx:build gluonfx:package -Pandroid -e -X
+          # Aumentamos la RAM para que GraalVM no sufra
+          export MAVEN_OPTS="-Xmx6g"
+          # Ejecutamos el build
+          mvn clean gluonfx:build gluonfx:package -Pandroid -e
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
           name: KardexMobil-APK
-          path: target/gluonfx/aarch64-linux-android/gvm/*.apk
+          # Ajustamos la ruta para que coincida con donde Gluon deja el archivo
+          path: target/gluonfx/aarch64-android/gvm/*.apk
