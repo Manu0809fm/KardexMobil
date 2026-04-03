@@ -23,19 +23,16 @@ jobs:
         run: |
           export MAVEN_OPTS="-Xmx6g"
           
-          # LIMPIEZA CRÍTICA: Borramos el cache de GraalVM del sistema
+          # Limpieza de caches
           rm -rf target/gluonfx || true
           rm -rf ~/.cache/gvm || true
-          rm -rf ~/.cache/gluonfx || true
           
-          # Instalación limpia de dependencias
           mvn clean install -DskipTests
           
-          # Build con flags de depuración y versión explícita
+          # Subimos a parallelism=2 para cumplir el requisito mínimo
           mvn gluonfx:build gluonfx:package -Pandroid -e \
-            -Dgraalvm.skip.agent=true \
             -Dgluonfx.verbose=true \
-            -Dgraalvm.version=21.0.2
+            -Dgraalvm.nativeimage.args="-J-Xmx6g --parallelism=2"
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
