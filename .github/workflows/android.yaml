@@ -21,10 +21,10 @@ jobs:
 
       - name: Build con Maven
         run: |
-          export MAVEN_OPTS="-Xmx6g -DuseCAPCache=false"
+          export MAVEN_OPTS="-Xmx6g"
+          rm -rf target/gluonfx/aarch64-android/gvm/capcache* || true
           mvn clean install -DskipTests
-          mvn gluonfx:build gluonfx:package -Pandroid -DuseCAPCache=false
-          
+          mvn gluonfx:build gluonfx:package -Pandroid          
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
