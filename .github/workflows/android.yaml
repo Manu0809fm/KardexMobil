@@ -24,7 +24,9 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Build con Maven
-        run: mvn clean gluonfx:build gluonfx:package -Pandroid
+        run: |
+          export MAVEN_OPTS="-Xmx4g"
+          mvn clean gluonfx:build gluonfx:package -Pandroid
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
