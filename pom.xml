@@ -189,10 +189,11 @@
         <mainClass>${mainClassName}</mainClass>
         <remoteCompileHost>false</remoteCompileHost>
         <nativeImageArgs>
-            <arg>--no-fallback</arg>
-            <arg>-H:+UnlockExperimentalVMOptions</arg>
-            <arg>-H:IncludeResourceBundles=com.sun.org.apache.xml.internal.res.XSLTErrorResources</arg>
-        </nativeImageArgs>
+    <arg>--no-fallback</arg>
+    <arg>-H:+UnlockExperimentalVMOptions</arg>
+    <arg>-H:IncludeResourceBundles=com.sun.org.apache.xml.internal.res.XSLTErrorResources</arg>
+    <arg>-H:+AllowVMInspection</arg> 
+</nativeImageArgs>
         <attachList>
             <list>display</list>
             <list>lifecycle</list>
