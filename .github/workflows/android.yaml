@@ -1,16 +1,17 @@
 name: Android Build
-on: [push, pull_request] # Se activa cada vez que subes cambios
+on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest # Usamos Linux de GitHub para evitar el error de Windows
+    runs-on: ubuntu-latest
     steps:
-      - com.kardexmobil: checkout@v3
+      - name: Checkout del código
+        uses: actions/checkout@v3
 
       - name: Setup Gluon GraalVM
         uses: gluonhq/setup-graalvm@master
         with:
-          graalvm: '22.1.0.1' # Versión compatible con Java 17
+          graalvm: '22.1.0.1'
           jdk: 'java17'
 
       - name: Install Android SDK
