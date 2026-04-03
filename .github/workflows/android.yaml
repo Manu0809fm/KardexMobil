@@ -8,12 +8,13 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      - name: Configurar GraalVM (Comunidad)
+      - name: Configurar GraalVM (Java 21)
         uses: graalvm/setup-graalvm@v1
         with:
-          java-version: '17'
+          java-version: '21' # Subimos a 21
           distribution: 'graalvm-community'
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          native-image-musl-builder: true # Esto es clave para Linux/Android
 
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
