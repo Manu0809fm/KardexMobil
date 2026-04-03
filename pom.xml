@@ -196,10 +196,6 @@
     <arg>--no-fallback</arg>
     <arg>--verbose</arg>
     <arg>-J-Xmx6g</arg>
-    <arg>--parallelism=2</arg> 
-    <arg>--initialize-at-build-time=java.lang.System</arg>
-    <arg>--initialize-at-build-time=com.sun.jna</arg>
-    <arg>--initialize-at-run-time=java.lang.ProcessImpl</arg>
 </nativeImageArgs>
         <attachList>
             <list>display</list>

@@ -21,18 +21,20 @@ jobs:
 
       - name: Build con Maven
         run: |
+          # Solo la memoria de Maven
           export MAVEN_OPTS="-Xmx6g"
           
-          # Limpieza de caches
+          # Limpieza total de rastros anteriores
           rm -rf target/gluonfx || true
           rm -rf ~/.cache/gvm || true
           
+          # Instalación
           mvn clean install -DskipTests
           
-          # Subimos a parallelism=2 para cumplir el requisito mínimo
+          # Ejecución limpia: quitamos los flags manuales de graalvm.version 
+          # y dejamos que el plugin use su configuración interna.
           mvn gluonfx:build gluonfx:package -Pandroid -e \
-            -Dgluonfx.verbose=true \
-            -Dgraalvm.nativeimage.args="-J-Xmx6g --parallelism=2"
+            -Dgluonfx.verbose=true
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
