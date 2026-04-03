@@ -121,7 +121,12 @@
             <url>https://nexus.gluonhq.com/nexus/content/repositories/releases</url>
         </repository>
     </repositories>
-
+    <pluginRepositories>
+    <pluginRepository>
+        <id>Gluon</id>
+        <url>https://nexus.gluonhq.com/nexus/content/repositories/releases</url>
+    </pluginRepository>
+</pluginRepositories>
     <build>
         <plugins>
             <plugin>
